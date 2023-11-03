@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""N queens module.
+"""N queens solution finder module.
 """
 import sys
 
@@ -16,7 +16,10 @@ pos = None
 
 
 def get_input():
-    """Retrieving and validates this program's argument.
+    """Retrieves and validates this program's argument.
+
+    Returns:
+        int: The size of the chessboard.
     """
     global n
     n = 0
@@ -35,7 +38,14 @@ def get_input():
 
 
 def is_attacking(pos0, pos1):
-    """Checking if the positions of two queens are in an attacking mode.    
+    """Checks if the positions of two queens are in an attacking mode.
+
+    Args:
+        pos0 (list or tuple): The first queen's position.
+        pos1 (list or tuple): The second queen's position.
+
+    Returns:
+        bool: True if the queens are in an attacking position else False.
     """
     if (pos0[0] == pos1[0]) or (pos0[1] == pos1[1]):
         return True
@@ -43,8 +53,13 @@ def is_attacking(pos0, pos1):
 
 
 def group_exists(group):
-    """Checking if a group exists in the list of solutions.
-    
+    """Checks if a group exists in the list of solutions.
+
+    Args:
+        group (list of integers): A group of possible positions.
+
+    Returns:
+        bool: True if it exists, otherwise False.
     """
     global solutions
     for stn in solutions:
@@ -59,7 +74,11 @@ def group_exists(group):
 
 
 def build_solution(row, group):
-    """Building a solution for the n queens problem.    
+    """Builds a solution for the n queens problem.
+
+    Args:
+        row (int): The current row in the chessboard.
+        group (list of lists of integers): The group of valid positions.
     """
     global solutions
     global n
@@ -79,7 +98,7 @@ def build_solution(row, group):
 
 
 def get_solutions():
-    """Getting the solutions for the given chessboard size.
+    """Gets the solutions for the given chessboard size.
     """
     global pos, n
     pos = list(map(lambda x: [x // n, x % n], range(n ** 2)))
